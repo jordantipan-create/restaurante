@@ -1,0 +1,758 @@
+/* ==========================================================
+   📦 ESTILO PROFESIONAL - GESTIÓN DE INVENTARIO (inventario.css)
+   Paleta: Negro (#1A1A1A), Blanco (#FFFFFF), Naranja (#FF6600)
+   ========================================================== */
+
+/* ======= Fondo con overlay para mejor legibilidad ======= */
+.iframe-body {
+    margin: 0;
+    /* Mantenemos el fondo del usuario, con un overlay oscuro */
+    background: 
+        linear-gradient(rgba(26, 26, 26, 0.88), rgba(26, 26, 26, 0.94)),
+        url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+    color: #FFFFFF;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Efecto de luces sutil */
+.iframe-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 102, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 51, 51, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ======= Contenedor general ======= */
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+    min-height: calc(100vh - 60px);
+}
+
+/* ======= Formulario con efecto cristal ======= */
+.formulario {
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 35px 30px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    border-left: 6px solid #FF6600;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out 0.1s both; /* Animación de entrada */
+}
+
+.formulario::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF6600, #FF3333, #FF6600);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.formulario:hover::before {
+    opacity: 0.3;
+}
+
+.formulario:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 
+        0 15px 50px rgba(255, 102, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.formulario h2 {
+    text-align: center;
+    color: #FF6600;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.formulario h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #FF6600, #FF3333, transparent);
+    border-radius: 3px;
+}
+
+.formulario h2::before {
+    content: '📦';
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+/* Inputs mejorados */
+label {
+    display: block;
+    margin: 16px 0 8px;
+    color: #BBBBBB;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: relative;
+    padding-left: 5px;
+}
+
+label::before {
+    content: '📝';
+    color: #FF6600;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    font-size: 1rem;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(51, 51, 51, 0.7);
+    border-radius: 10px;
+    background: rgba(38, 38, 38, 0.85);
+    color: #FFFFFF;
+    font-size: 1.05rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.25),
+        0 1px 0 rgba(255, 255, 255, 0.05);
+    font-family: 'Roboto', sans-serif;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #FF6600;
+    box-shadow: 
+        0 0 0 4px rgba(255, 102, 0, 0.25),
+        inset 0 3px 6px rgba(0, 0, 0, 0.3);
+    background: rgba(51, 51, 51, 0.9);
+    transform: translateY(-2px);
+}
+
+input[type="number"] {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+}
+
+/* ======= Botones del Formulario mejorados ======= */
+.botones {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn-principal, .btn-secundario {
+    flex-grow: 1;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.05rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* Botón Principal */
+.btn-agregar {
+    background: linear-gradient(135deg, #FF6600 0%, #FF8C42 100%);
+    color: #1A1A1A;
+    box-shadow: 
+        0 6px 20px rgba(255, 102, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-agregar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #FF8C42 0%, #FF6600 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 12px;
+}
+
+.btn-agregar:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(255, 102, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.btn-agregar:hover::before {
+    opacity: 1;
+}
+
+/* Botón Secundario */
+.btn-limpiar {
+    background: rgba(51, 51, 51, 0.85);
+    color: #CCCCCC;
+    border: 1px solid rgba(68, 68, 68, 0.6);
+    backdrop-filter: blur(8px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.btn-limpiar:hover {
+    background: rgba(68, 68, 68, 0.9);
+    color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 102, 0, 0.3);
+}
+
+/* ======= TABLA con efectos avanzados ======= */
+.tabla {
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 35px 30px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 780px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    border-left: 6px solid #FF6600;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out 0.2s both; /* Animación de entrada */
+}
+
+.tabla::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, #FF6600, transparent);
+    opacity: 0.5;
+}
+
+.tabla:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 50px rgba(255, 102, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.tabla h2 {
+    color: #FF6600;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.tabla h2::before {
+    content: '📊';
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+.tabla h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    width: 20%;
+    height: 3px;
+    background: linear-gradient(90deg, #FF6600, #FF3333);
+    border-radius: 3px;
+}
+
+/* Contenedor de scroll mejorado */
+.tabla-scroll {
+    overflow-x: auto;
+    border-radius: 12px;
+    position: relative;
+    padding: 2px;
+}
+
+.tabla-scroll::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF6600, #FF3333, #FF6600);
+    border-radius: 14px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Tabla mejorada */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    min-width: 700px; /* Asegura un ancho mínimo para scroll horizontal */
+}
+
+thead {
+    background: linear-gradient(135deg, #333333 0%, #262626 100%);
+    color: #FF6600;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+thead tr {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+thead th {
+    background: rgba(51, 51, 51, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 18px 15px;
+    text-align: left;
+    border-bottom: 2px solid rgba(255, 102, 0, 0.4);
+    position: relative;
+    white-space: nowrap;
+}
+
+thead th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.5), transparent);
+}
+
+tbody tr {
+    background: rgba(21, 21, 21, 0.75);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(26, 26, 26, 0.85);
+}
+
+tbody tr:hover {
+    background: rgba(38, 38, 38, 0.95);
+    transform: translateX(5px);
+    box-shadow: 
+        -5px 0 0 rgba(255, 102, 0, 0.5),
+        0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+tbody tr:hover td {
+    color: #FFFFFF;
+}
+
+tbody tr:hover td:first-child {
+    border-left: 3px solid #FF6600;
+    padding-left: 12px;
+}
+
+td {
+    padding: 16px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.6);
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Estilos para niveles de stock (no usados en el HTML actual, pero buenos para el futuro) */
+.stock-bajo { color: #FF3333; }
+.stock-medio { color: #FF9900; }
+.stock-alto { color: #00AFFF; }
+
+/* ======= Botones de acción premium ======= */
+.acciones {
+    text-align: center;
+    min-width: 170px;
+    white-space: nowrap;
+}
+
+.btn-accion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    margin: 4px;
+    min-width: 85px;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    gap: 6px;
+}
+
+/* Botón Editar */
+.btn-editar {
+    background: linear-gradient(135deg, #00AFFF 0%, #0088CC 100%);
+    color: #1A1A1A;
+    box-shadow: 
+        0 5px 15px rgba(0, 175, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-editar:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(0, 175, 255, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+/* Botón Eliminar */
+.btn-eliminar {
+    background: linear-gradient(135deg, #FF3333 0%, #c40000 100%);
+    color: #fff;
+    box-shadow: 
+        0 5px 15px rgba(255, 51, 51, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-eliminar:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(255, 51, 51, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ======= Estilos del MODAL mejorado ======= */
+.modal-inventario {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    animation: fadeInOverlay 0.3s ease;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content-inventario {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+    margin: 10% auto;
+    padding: 40px;
+    border: 2px solid rgba(255, 102, 0, 0.4);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-content-inventario::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF6600, #FF3333, #FF6600);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.modal-content-inventario h2 {
+    color: #FF6600;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+    padding-bottom: 15px;
+}
+
+.modal-content-inventario h2::before {
+    content: '✏️';
+    margin-right: 10px;
+}
+
+/* Botón de cierre mejorado */
+.close-inventario {
+    color: #FF6600;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(255, 102, 0, 0.1);
+    border: 2px solid rgba(255, 102, 0, 0.3);
+}
+
+.close-inventario:hover,
+.close-inventario:focus {
+    color: #FFFFFF;
+    background: #FF6600;
+    transform: rotate(90deg);
+    text-decoration: none;
+}
+
+/* Botones dentro del modal */
+.botones-modal {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn-guardar {
+    background: linear-gradient(135deg, #FF6600 0%, #FF8C42 100%);
+    color: #1A1A1A;
+    flex-grow: 1;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-guardar:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(255, 102, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+}
+
+.btn-cerrar-modal {
+    background: rgba(85, 85, 85, 0.8);
+    color: #FFFFFF;
+    flex-grow: 1;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    backdrop-filter: blur(5px);
+}
+
+.btn-cerrar-modal:hover {
+    background: rgba(102, 102, 102, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 900px) {
+    .contenedor {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 15px;
+        gap: 30px;
+    }
+
+    .formulario, .tabla {
+        width: 100%;
+        max-width: 95%;
+        padding: 30px 25px;
+    }
+
+    .formulario h2, .tabla h2 {
+        font-size: 1.4rem;
+    }
+
+    .botones {
+        flex-direction: column;
+    }
+
+    .botones-modal {
+        flex-direction: column;
+    }
+
+    .acciones {
+        min-width: auto;
+        white-space: normal;
+    }
+
+    .btn-accion {
+        margin: 5px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-content-inventario {
+        margin: 5% auto;
+        padding: 30px 20px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .formulario, .tabla {
+        padding: 25px 20px;
+    }
+
+    .formulario h2, .tabla h2 {
+        font-size: 1.2rem;
+        padding-bottom: 10px;
+    }
+
+    input, textarea, select {
+        padding: 12px 14px;
+        font-size: 1rem;
+    }
+
+    .btn-principal, .btn-secundario,
+    .btn-guardar, .btn-cerrar-modal {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    th, td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+
+    .btn-accion {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar personalizado */
+.tabla-scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.tabla-scroll::-webkit-scrollbar-track {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 5px;
+}
+
+.tabla-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #FF6600, #FF3333);
+    border-radius: 5px;
+}

@@ -1,0 +1,252 @@
+/* ==========================================================
+   👥 ESTILO PROFESIONAL - GESTIÓN DE CLIENTES (clientes.css)
+   Paleta: Negro (#1A1A1A), Blanco (#FFFFFF), Naranja (#FF6600)
+   ========================================================== */
+
+/* ======= Fondo general del iframe ======= */
+.iframe-body {
+    margin: 0;
+     background: url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF; 
+    background-color: #212121; /* Fondo consistente con el Dashboard */
+}
+
+/* ======= Contenedor general ======= */
+.contenedor {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    gap: 30px;
+}
+
+/* ======= Formulario (Módulo de Agregar/Editar) ======= */
+.formulario {
+    background-color: #1A1A1A; /* Negro Oscuro */
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-left: 5px solid #FF6600; /* Borde naranja de énfasis */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formulario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.formulario h2 {
+    text-align: center;
+    color: #FF6600;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+/* Inputs y etiquetas */
+label {
+    display: block;
+    margin: 12px 0 5px;
+    color: #AAAAAA;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    background-color: #262626;
+    color: #FFFFFF;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #FF6600;
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.5);
+    background-color: #333333;
+}
+
+/* ======= Botones del Formulario ======= */
+.botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-principal, .btn-secundario {
+    flex-grow: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Principal (Registrar) */
+.btn-agregar {
+    background-color: #FF6600;
+    color: #1A1A1A;
+}
+.btn-agregar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.6);
+    background-color: #E65C00;
+}
+
+/* Secundario (Limpiar) */
+.btn-limpiar {
+    background-color: #333333;
+    color: #CCCCCC;
+    border: 1px solid #444444;
+}
+.btn-limpiar:hover {
+    background-color: #444444;
+    color: #FFFFFF;
+}
+
+/* ======= TABLA (Módulo de Listado) ======= */
+.tabla {
+    background-color: #1A1A1A;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%; 
+    max-width: 750px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-left: 5px solid #FF6600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tabla:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.tabla h2 {
+    color: #FF6600;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #FFFFFF;
+}
+
+thead {
+    background-color: #333333;
+    color: #FF6600;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+th, td {
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 1px solid #333333;
+}
+
+tr:nth-child(even) {
+    background-color: #151515; /* Alternar filas */
+}
+
+tr:hover {
+    background-color: #262626;
+}
+
+/* ======= Botones de acción (Editar / Eliminar) ======= */
+.acciones {
+    text-align: center;
+    min-width: 150px; /* Asegura espacio para ambos botones */
+}
+
+.btn-accion {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    margin: 3px;
+}
+
+/* Editar */
+.btn-editar {
+    background-color: #00AFFF; /* Azul vibrante */
+    color: #1A1A1A;
+}
+.btn-editar:hover {
+    background-color: #008fcf;
+    transform: scale(1.05);
+}
+
+/* Eliminar */
+.btn-eliminar {
+    background-color: #FF3333; /* Rojo seguro */
+    color: #fff;
+}
+.btn-eliminar:hover {
+    background-color: #c40000;
+    transform: scale(1.05);
+}
+
+/* ESTILOS DEL MODAL DE BOOTSTRAP */
+.modal-content {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border: 1px solid #FF6600;
+}
+.modal-header {
+    background-color: #333333;
+    border-bottom: 1px solid #FF6600;
+}
+.modal-title {
+    color: #FF6600;
+}
+.modal-body .form-control {
+    background-color: #262626;
+    border: 1px solid #444444;
+    color: #FFFFFF;
+}
+.modal-body .form-control:focus {
+    border-color: #FF6600;
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+}
+.modal-footer {
+    border-top: 1px solid #333333;
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 900px) {
+    .contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formulario, .tabla {
+        width: 100%;
+        max-width: 90%;
+    }
+}

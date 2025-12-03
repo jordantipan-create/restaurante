@@ -1,0 +1,569 @@
+/* ==========================================================
+   🛒 ESTILO PROFESIONAL - CREAR ORDEN (crear_orden.css)
+   Paleta: Negro (#1A1A1A), Blanco (#FFFFFF), Naranja (#FF6600)
+   ========================================================== */
+
+:root {
+    --bg: #212121;
+    --card: #1A1A1A;
+    --accent: #FF6600;
+    --muted: #AAAAAA;
+    --danger: #FF3333;
+    --success: #00AFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ======= Fondo con overlay para mejor legibilidad ======= */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: 
+        linear-gradient(rgba(26, 26, 26, 0.92), rgba(26, 26, 26, 0.96)),
+        url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+    color: #FFFFFF;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efecto de partículas */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 15% 25%, rgba(255, 102, 0, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(0, 175, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ======= Header mejorado ======= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 35px;
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #FF6600, #FF8C42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+}
+
+.acciones-header a {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.acciones-header a:hover {
+    background: rgba(255, 102, 0, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 102, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+/* ======= Grid principal mejorado ======= */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+    padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 1100px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    .carrito-section {
+        order: -1;
+    }
+}
+
+/* ======= Cards mejoradas ======= */
+.card {
+    background: rgba(26, 26, 26, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 102, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6600, #00AFFF);
+    opacity: 0.7;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px rgba(255, 102, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #FF6600;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF6600, transparent);
+    border-radius: 3px;
+}
+
+/* ======= Grid de productos mejorado ======= */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.producto-card {
+    background: rgba(38, 38, 38, 0.9);
+    border: 1px solid rgba(51, 51, 51, 0.7);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.producto-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 102, 0, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #FF6600;
+    box-shadow: 
+        0 10px 30px rgba(255, 102, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: rgba(44, 44, 44, 0.95);
+}
+
+.producto-card:hover::before {
+    opacity: 1;
+}
+
+.producto-nombre {
+    font-weight: 700;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.producto-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.producto-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.producto-precio {
+    color: #FF6600;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.producto-stock {
+    font-size: 0.9rem;
+    color: #00AFFF;
+    background: rgba(0, 175, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.producto-acciones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+/* ======= Carrito mejorado ======= */
+.carrito-section .card {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrito-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 400px;
+    margin-bottom: 20px;
+}
+
+.empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 20px;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.mini-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(38, 38, 38, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mini-table th {
+    background: rgba(51, 51, 51, 0.9);
+    color: #FF6600;
+    padding: 12px 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+}
+
+.mini-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+    transition: all 0.2s ease;
+}
+
+.mini-table tr:hover td {
+    background: rgba(255, 102, 0, 0.05);
+}
+
+.carrito-totales {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1.2rem;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 102, 0, 0.3);
+}
+
+.total-label {
+    color: var(--muted);
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.total-valor {
+    color: #FF6600;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+/* ======= Botones mejorados ======= */
+.btn {
+    background: linear-gradient(135deg, var(--accent), #E65C00);
+    color: #1A1A1A;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 25px rgba(255, 102, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+}
+
+.btn.small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.btn.outline {
+    background: transparent;
+    border: 2px solid rgba(209, 213, 219, 0.5);
+    color: #FFFFFF;
+}
+
+.btn.outline:hover {
+    border-color: #FF6600;
+    background: rgba(255, 102, 0, 0.1);
+}
+
+.btn.danger {
+    background: linear-gradient(135deg, var(--danger), #c40000);
+}
+
+.btn.danger:hover {
+    box-shadow: 
+        0 8px 25px rgba(255, 51, 51, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--success), #0088CC);
+}
+
+/* ======= Formularios mejorados ======= */
+.form-row {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row label {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.form-row label::before {
+    content: '▸';
+    color: #FF6600;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.form-row select, 
+.form-row input {
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(51, 51, 51, 0.8);
+    background: rgba(38, 38, 38, 0.9);
+    color: #FFFFFF;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.3),
+        0 1px 0 rgba(255, 255, 255, 0.05);
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-row select:focus, 
+.form-row input:focus {
+    border-color: #FF6600;
+    box-shadow: 
+        0 0 0 4px rgba(255, 102, 0, 0.2),
+        inset 0 2px 8px rgba(0, 0, 0, 0.4);
+    background: rgba(51, 51, 51, 0.95);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+.form-row select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FF6600' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 14px;
+    padding-right: 45px;
+}
+
+/* ======= Responsive mejorado ======= */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .acciones-header {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .acciones-header a {
+        margin: 0;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .productos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-grid {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .producto-card {
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .form-row select, 
+    .form-row input {
+        padding: 12px 15px;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.producto-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Scrollbar personalizado */
+.carrito-list::-webkit-scrollbar,
+.productos-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.carrito-list::-webkit-scrollbar-track,
+.productos-grid::-webkit-scrollbar-track {
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 4px;
+}
+
+.carrito-list::-webkit-scrollbar-thumb,
+.productos-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #FF6600, #E65C00);
+    border-radius: 4px;
+}
+
+.carrito-list::-webkit-scrollbar-thumb:hover,
+.productos-grid::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #FF7722, #FF6600);
+}

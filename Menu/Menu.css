@@ -1,0 +1,328 @@
+/* ==========================================================
+   🎨 ESTILO PROFESIONAL - DASHBOARD (Menu.css) - VERSIÓN MEJORADA
+   Paleta: Negro (#1A1A1A), Blanco (#FFFFFF), Naranja (#FF6600)
+   ========================================================== */
+
+/* Fuentes y Estructura Base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    display: grid;
+    grid-template-areas:
+        "topbar topbar"
+        "sidebar content"
+        "sidebar footer";
+    grid-template-columns: 250px 1fr;
+    /* CAMBIO IMPORTANTE: Usamos viewport height y min-height para mejor control */
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    max-height: 100vh; /* Evita que el contenido se salga de la pantalla */
+    overflow: hidden; /* Previene scroll innecesario en el body */
+}
+
+/* TOP BAR (Header Superior) */
+.topbar {
+    grid-area: topbar;
+    background-color: #0D0D0D;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #FF6600;
+}
+
+.logo .icon {
+    margin-right: 10px;
+    color: #FFFFFF;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+}
+
+.user-profile span {
+    font-weight: 400;
+    color: #CCCCCC;
+}
+
+.btn-salir {
+    background-color: #FF6600;
+    color: #0D0D0D;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-salir:hover {
+    background-color: #E65C00;
+    transform: translateY(-2px);
+}
+
+/* SIDEBAR (Menú Lateral) */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #1A1A1A;
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    border-right: 1px solid #333333;
+    /* Ajuste para que ocupe toda la altura disponible */
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - (var(--topbar-height, 60px) + var(--footer-height, 40px)));
+    min-height: 0; /* Permite que el contenido se reduzca si es necesario */
+}
+
+.main-nav {
+    flex-grow: 1; /* Ocupa todo el espacio disponible */
+    overflow-y: auto; /* Scroll solo si es necesario */
+    scrollbar-width: thin;
+    scrollbar-color: #333333 #1A1A1A;
+}
+
+/* Estilos para scrollbar en navegadores webkit */
+.main-nav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-nav::-webkit-scrollbar-track {
+    background: #1A1A1A;
+}
+
+.main-nav::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 3px;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav li a {
+    display: block;
+    padding: 15px 25px; /* Aumentado para mejor touch */
+    text-decoration: none;
+    color: #CCCCCC;
+    font-size: 1.05rem;
+    font-weight: 400;
+    border-left: 5px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Evita que el texto se rompa */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-nav li a:hover {
+    background-color: #262626;
+    color: #FFFFFF;
+    border-left-color: #333333;
+}
+
+.main-nav li a.active {
+    background-color: #333333;
+    color: #FF6600;
+    border-left-color: #FF6600;
+    font-weight: 700;
+}
+
+/* CONTENT WRAPPER (Contenedor de Contenido Principal) - MEJORADO */
+.content-wrapper {
+    grid-area: content;
+    padding: 30px;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+    /* Asegura que ocupe toda la altura disponible */
+    height: calc(100vh - (var(--topbar-height, 60px) + var(--footer-height, 40px)));
+    min-height: 0; /* Permite que el contenido se reduzca */
+    overflow: hidden; /* Contiene todo el contenido */
+}
+
+.content-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333333;
+    flex-shrink: 0; /* Evita que el header se encoja */
+}
+
+#content-title {
+    font-size: 2.2rem;
+    color: #FF6600;
+    margin: 0;
+}
+
+#content-sub {
+    color: #AAAAAA;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* IFRAME Container - MEJORADO DRAMÁTICAMENTE */
+.content-frame-container {
+    flex-grow: 1; /* Ocupa todo el espacio restante */
+    min-height: 0; /* Permite que se reduzca si es necesario */
+    overflow: hidden; /* Importante para el iframe */
+    border-radius: 10px;
+    background-color: #1A1A1A;
+    /* Sombra sutil para efecto de profundidad */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+#content-frame {
+    width: 100%;
+    height: 100%;
+    border: none; /* Quitamos el borde para mejor integración */
+    border-radius: 10px;
+    background-color: #1A1A1A;
+    /* Asegura que el iframe ocupe todo el contenedor */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* FOOTER */
+.footer {
+    grid-area: footer;
+    background-color: #0D0D0D;
+    color: #666666;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    border-top: 1px solid #333333;
+    flex-shrink: 0; /* Evita que el footer se encoja */
+}
+
+/* Mejoras adicionales para experiencia de usuario */
+/* Estado de carga del iframe */
+.content-frame-container.loading {
+    background-color: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #333333;
+    border-top: 3px solid #FF6600;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estado vacío */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #666666;
+    text-align: center;
+    padding: 40px;
+}
+
+.empty-state h3 {
+    color: #AAAAAA;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    max-width: 400px;
+}
+
+/* Responsive (Ajustes para pantallas pequeñas) - MEJORADO */
+@media (max-width: 900px) {
+    body {
+        grid-template-areas:
+            "topbar topbar"
+            "sidebar sidebar"
+            "content content"
+            "footer footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        max-height: none; /* Permitimos scroll en móvil */
+        overflow: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333333;
+        height: auto; /* Altura automática en móvil */
+    }
+
+    .content-wrapper {
+        height: auto; /* Altura automática en móvil */
+        min-height: 70vh; /* Altura mínima */
+    }
+
+    .main-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .main-nav li a {
+        padding: 10px 15px;
+        border-left: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+    }
+    
+    .main-nav li a.active {
+        border-left: none;
+        border-bottom: 3px solid #FF6600;
+    }
+}
+
+/* Para pantallas muy pequeñas (móviles) */
+@media (max-width: 576px) {
+    .content-wrapper {
+        padding: 15px;
+    }
+    
+    #content-title {
+        font-size: 1.8rem;
+    }
+    
+    .content-header {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+}
+
+/* Variables CSS para mantener consistencia */
+:root {
+    --topbar-height: 60px;
+    --footer-height: 40px;
+    --sidebar-width: 250px;
+    --content-padding: 30px;
+    --transition-speed: 0.3s;
+}

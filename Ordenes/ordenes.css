@@ -1,0 +1,338 @@
+/* ==========================================================
+   📝 ESTILO PROFESIONAL - GESTIÓN DE ÓRDENES (ordenes.css)
+   Paleta: Negro (#1A1A1A), Blanco (#FFFFFF), Naranja (#FF6600)
+   ========================================================== */
+
+/* Variables para fácil mantenimiento */
+:root {
+    --color-principal: #FF6600;
+    --color-fondo: #212121;
+    --color-card: #1A1A1A;
+    --color-texto: #FFFFFF;
+    --color-subtexto: #AAAAAA;
+    --color-acento-claro: #333333;
+    --color-editar: #00AFFF; 
+    --color-eliminar: #FF3333;
+}
+
+/* ======= Fondo general del iframe con imagen y overlay ======= */
+.iframe-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    color: var(--color-texto); 
+    /* Fondo con la imagen de restaurant y un overlay oscuro para legibilidad */
+    background: 
+        linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.95)), /* Capa oscura */
+        url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+    min-height: 100vh; /* Asegura que cubra toda la altura */
+}
+
+/* Efecto de partículas sutil (opcional, si lo quieres) */
+/*
+.iframe-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 15%, rgba(255, 102, 0, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 85%, rgba(39, 174, 96, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+*/
+
+/* ======= Contenedor general - FLEXBOX ======= */
+.contenedor {
+    display: flex;
+    justify-content: center; /* Centrar elementos en lugar de space-around */
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    gap: 30px;
+    position: relative; /* Para asegurar que el contenido esté sobre el fondo */
+    z-index: 1;
+}
+
+/* ======= Estilos base de las "Tarjetas" (Formulario y Tabla) ======= */
+.formulario, .tabla {
+    background-color: var(--color-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    border-left: 5px solid var(--color-principal);
+    transition: transform 0.3s ease-in-out;
+}
+
+.formulario:hover, .tabla:hover {
+    transform: translateY(-3px); /* Pequeño efecto 3D al pasar el ratón */
+}
+
+.formulario {
+    width: 100%;
+    max-width: 420px; /* Ligeramente más ancho para mejor formulario */
+    order: 1; /* Orden en móvil */
+}
+
+.tabla {
+    width: 100%; 
+    max-width: 800px; /* Más ancho para la tabla */
+    order: 2; /* Orden en móvil */
+}
+
+/* Títulos de Módulos */
+.formulario h2, .tabla h2, .modal-content-ordenes h2 {
+    text-align: center;
+    color: var(--color-principal);
+    margin-bottom: 25px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+}
+
+/* Inputs, Selects y etiquetas */
+label {
+    display: block;
+    margin: 12px 0 5px;
+    color: var(--color-subtexto);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-acento-claro);
+    border-radius: 8px;
+    background-color: #262626;
+    color: var(--color-texto);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Fundamental para que el padding no desborde */
+}
+
+input:focus, select:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
+    background-color: #333333;
+}
+
+/* ======= Botones de Formulario y Modal (Efectos) ======= */
+.botones {
+    display: flex;
+    gap: 15px; /* Más espacio */
+    margin-top: 30px;
+}
+
+.btn-principal, .btn-secundario, .btn-accion, .btn-guardar, .btn-cerrar-modal {
+    transition: all 0.3s ease;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* Colores de Botones Principales */
+.btn-agregar, .btn-guardar {
+    background-color: var(--color-principal);
+    color: var(--color-card); /* Texto oscuro */
+}
+
+.btn-agregar:hover, .btn-guardar:hover {
+    background-color: #FF8C42; /* Naranja más claro */
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-limpiar, .btn-cerrar-modal {
+    background-color: var(--color-acento-claro);
+    color: var(--color-texto);
+    border: 1px solid #555555;
+}
+
+.btn-limpiar:hover, .btn-cerrar-modal:hover {
+    background-color: #444444;
+    color: #FF6600;
+    transform: translateY(-2px);
+}
+
+/* ======= TABLA (Detalles) ======= */
+.tabla-scroll {
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    min-width: 600px; /* Asegura que la tabla no sea demasiado estrecha en móvil */
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--color-texto);
+}
+
+thead {
+    background-color: var(--color-acento-claro);
+    color: var(--color-principal);
+    font-weight: 800;
+}
+
+th, td {
+    padding: 15px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333333;
+}
+
+tbody tr {
+    background-color: #212121;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #1A1A1A;
+}
+
+tbody tr:hover {
+    background-color: #333333;
+}
+
+/* Botones de acción (Editar / Eliminar) */
+.acciones {
+    text-align: center;
+    min-width: 150px; 
+}
+
+.btn-accion {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.btn-editar {
+    background-color: var(--color-editar); 
+    color: var(--color-card);
+}
+
+.btn-editar:hover {
+    background-color: #33BDFF;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 175, 255, 0.5);
+}
+
+.btn-eliminar {
+    background-color: var(--color-eliminar);
+    color: var(--color-texto);
+}
+
+.btn-eliminar:hover {
+    background-color: #FF5C5C;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(255, 51, 51, 0.5);
+}
+
+/* Columna de Total */
+.total-col {
+    font-weight: 700;
+    color: var(--color-principal);
+}
+
+/* ======= Estilos del MODAL (Edición) ======= */
+
+.modal-ordenes {
+    display: none; 
+    position: fixed; 
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Oscurecer más el fondo */
+    backdrop-filter: blur(5px);
+    display: flex; /* Uso flex para centrar mejor el contenido */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content-ordenes {
+    background-color: var(--color-card);
+    padding: 35px;
+    border: 3px solid var(--color-principal);
+    border-radius: 15px;
+    width: 90%; 
+    max-width: 450px; /* Un poco más centrado y pequeño */
+    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.close-ordenes {
+    color: var(--color-principal);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-ordenes:hover, .close-ordenes:focus {
+    color: #FFD700; /* Oro */
+    transform: rotate(90deg);
+}
+
+/* Media Queries (Responsive) */
+@media (min-width: 768px) {
+    .contenedor {
+        justify-content: space-between; /* Distribuye formulario y tabla */
+    }
+
+    .formulario {
+        order: 1;
+    }
+    .tabla {
+        /* Permite que la tabla ocupe el espacio restante sin desbordar */
+        max-width: calc(100% - 450px - 30px); 
+        order: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    /* En móvil, la tabla viene antes que el formulario para mejor UX */
+    .formulario {
+        max-width: 100%;
+        order: 2; 
+    }
+    .tabla {
+        max-width: 100%;
+        order: 1;
+    }
+    th, td {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+    }
+    .acciones {
+        min-width: 100px;
+    }
+}
